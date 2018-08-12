@@ -1,11 +1,11 @@
-package com.mood.test.dao.impl;
+package com.mood.room.dao.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mood.base.Pager;
-import com.mood.entity.test.Test;
-import com.mood.test.dao.TestDao;
-import com.mood.test.dao.mapper.TestMapper;
+import com.mood.entity.room.Room;
+import com.mood.room.dao.RoomDao;
+import com.mood.room.dao.mapper.RoomMapper;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,46 +19,46 @@ import java.util.List;
  * @time 2018-01-07 下午08:00
  */
 @Repository
-public class TestDaoImpl implements TestDao {
+public class RoomDaoImpl implements RoomDao {
 
    @Autowired
-    private TestMapper testMapper;
+    private RoomMapper roomMapper;
 
     @Override
-    public int insert(Test test) {
-        return testMapper.insert(test);
+    public int insert(Room room) {
+        return roomMapper.insert(room);
     }
 
     @Override
-    public int update(Test test) {
-        return testMapper.updateByPrimaryKeySelective(test);
+    public int update(Room room) {
+        return roomMapper.updateByPrimaryKeySelective(room);
     }
 
     @Override
     public int deleteById(String id) {
-        return testMapper.deleteByPrimaryKey(id);
+        return roomMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public Test selectById(String id) {
-        return testMapper.selectByPrimaryKey(id);
+    public Room selectById(String id) {
+        return roomMapper.selectByPrimaryKey(id);
     }
 
 //    @Override
-//    public List<User> selectAll(JSONObject param){
+//    public List<Room> selectAll(JSONObject param){
 //        return null;
 //    }
 
     @Override
-    public List<Test> selectAll(Test test, String... data) {
-        Example example = new Example(Test.class);
+    public List<Room> selectAll(Room room, String... data) {
+        Example example = new Example(Room.class);
         Example.Criteria criteria = example.createCriteria();
-        if (test != null) {
+        if (room != null) {
             //拼接条件
-            Object name = test.getName();
-            if (name != null) {
-                criteria.andLike("name", "%" + name.toString() + "%");
-            }
+//            Object name = room.getName();
+//            if (name != null) {
+//                criteria.andLike("name", "%" + name.toString() + "%");
+//            }
         }
         String orderBy = "";
         if(data.length > 0){
@@ -69,14 +69,14 @@ public class TestDaoImpl implements TestDao {
         if(!"".equals(orderBy)){
             example.setOrderByClause(orderBy);
         }
-        return testMapper.selectByExample(example);
+        return roomMapper.selectByExample(example);
     }
 
     @Override
-    public Pager<Test> selectPager(Pager pager){
+    public Pager<Room> selectPager(Pager pager){
         //处理分页
         PageHelper.startPage(pager.getPageIndex(), pager.getPageSize());
-        List<Test> result = selectAll((Test)pager.getObject(), pager.getOrderBy());
+        List<Room> result = selectAll((Room)pager.getObject(), pager.getOrderBy());
         //组装返回数据
         PageInfo pageInfo = new PageInfo(result);
         return pager.buildPager(pageInfo.getPages(), pageInfo.getTotal(), pageInfo.getList());

@@ -36,9 +36,14 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
         return mapper.selectByPrimaryKey(id);
     }
 
+//    @Override
+//    public List<T> selectAll(JSONObject param) {
+//        return mapper.selectByExample(param);
+//    }
+
     @Override
-    public List<T> selectAll(JSONObject param) {
-        return mapper.selectByExample(param);
+    public List<T> selectAll(T t, String... data){
+        return mapper.select(t);
     }
 
 }

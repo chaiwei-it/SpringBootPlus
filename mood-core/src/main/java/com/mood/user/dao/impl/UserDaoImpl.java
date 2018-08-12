@@ -1,12 +1,11 @@
-package com.mood.test.dao.impl;
+package com.mood.user.dao.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mood.base.Pager;
-import com.mood.entity.test.Test;
-import com.mood.test.dao.TestDao;
-import com.mood.test.dao.mapper.TestMapper;
-import net.sf.json.JSONObject;
+import com.mood.entity.user.User;
+import com.mood.user.dao.UserDao;
+import com.mood.user.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import tk.mybatis.mapper.entity.Example;
@@ -19,29 +18,29 @@ import java.util.List;
  * @time 2018-01-07 下午08:00
  */
 @Repository
-public class TestDaoImpl implements TestDao {
+public class UserDaoImpl implements UserDao {
 
    @Autowired
-    private TestMapper testMapper;
+    private UserMapper userMapper;
 
     @Override
-    public int insert(Test test) {
-        return testMapper.insert(test);
+    public int insert(User user) {
+        return userMapper.insert(user);
     }
 
     @Override
-    public int update(Test test) {
-        return testMapper.updateByPrimaryKeySelective(test);
+    public int update(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
     public int deleteById(String id) {
-        return testMapper.deleteByPrimaryKey(id);
+        return userMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public Test selectById(String id) {
-        return testMapper.selectByPrimaryKey(id);
+    public User selectById(String id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 
 //    @Override
@@ -50,15 +49,15 @@ public class TestDaoImpl implements TestDao {
 //    }
 
     @Override
-    public List<Test> selectAll(Test test, String... data) {
-        Example example = new Example(Test.class);
+    public List<User> selectAll(User user, String... data) {
+        Example example = new Example(User.class);
         Example.Criteria criteria = example.createCriteria();
-        if (test != null) {
+        if (user != null) {
             //拼接条件
-            Object name = test.getName();
-            if (name != null) {
-                criteria.andLike("name", "%" + name.toString() + "%");
-            }
+//            Object name = user.getName();
+//            if (name != null) {
+//                criteria.andLike("name", "%" + name.toString() + "%");
+//            }
         }
         String orderBy = "";
         if(data.length > 0){
@@ -69,14 +68,14 @@ public class TestDaoImpl implements TestDao {
         if(!"".equals(orderBy)){
             example.setOrderByClause(orderBy);
         }
-        return testMapper.selectByExample(example);
+        return userMapper.selectByExample(example);
     }
 
     @Override
-    public Pager<Test> selectPager(Pager pager){
+    public Pager<User> selectPager(Pager pager){
         //处理分页
         PageHelper.startPage(pager.getPageIndex(), pager.getPageSize());
-        List<Test> result = selectAll((Test)pager.getObject(), pager.getOrderBy());
+        List<User> result = selectAll((User)pager.getObject(), pager.getOrderBy());
         //组装返回数据
         PageInfo pageInfo = new PageInfo(result);
         return pager.buildPager(pageInfo.getPages(), pageInfo.getTotal(), pageInfo.getList());

@@ -1,4 +1,4 @@
-package com.mood.entity.admin;
+package com.mood.entity.user;
 
 import com.mood.entity.base.BaseEntity;
 import lombok.Data;
@@ -12,8 +12,8 @@ import javax.persistence.Table;
  * @time 2018-06-04 下午16:00
  */
 @Data
-@Table(name="hotel_admin")
-public class Admin extends BaseEntity {
+@Table(name="hotel_user")
+public class User extends BaseEntity {
 
     @Id
     private String id;
@@ -23,20 +23,7 @@ public class Admin extends BaseEntity {
      */
     private String username;
 
-    /**
-     * 名称
-     */
-    private String password;
-
-    /**
-     * 用户头像
-     */
-    private String headImage;
-
-    /**
-     * 盐值
-     */
-    private String salt;
+    private String mobile;
 
 
 }

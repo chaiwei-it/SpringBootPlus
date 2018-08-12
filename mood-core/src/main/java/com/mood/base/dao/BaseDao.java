@@ -20,7 +20,9 @@ public interface BaseDao<T> {
 
     public T selectById(String id);
 
-    public List<T> selectAll(JSONObject param);
+//    public List<T> selectAll(JSONObject param);
+
+    public List<T> selectAll(T t, String... data);
 
     public Pager<T> selectPager(Pager pager);
 }
