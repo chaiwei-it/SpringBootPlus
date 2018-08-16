@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * 应用模块
@@ -29,11 +30,21 @@ public class RoomUpdateRequest implements Serializable {
     private String id;
 
     /**
-     * 名称
+     * 房间编号
      */
     @NotNull(message = "请输入昵称")
     @NotBlank(message = "请输入昵称")
-    private String name;
+    private String roomNum;
+
+    /**
+     * 房间类型
+     */
+    private Integer roomType;
+
+    /**
+     * 价格
+     */
+    private BigDecimal price;
 
 
 }

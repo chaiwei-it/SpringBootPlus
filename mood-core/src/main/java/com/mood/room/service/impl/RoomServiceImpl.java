@@ -49,9 +49,9 @@ public class RoomServiceImpl implements RoomService {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void delete(RoomDeleteRequest request){
+    public RoomDeleteResponse delete(RoomDeleteRequest request){
         roomDao.deleteById(request.getId());
-        Shift.fatal(StatusCode.OK);
+        return new RoomDeleteResponse();
     }
 
     @Transactional(rollbackFor = Exception.class)

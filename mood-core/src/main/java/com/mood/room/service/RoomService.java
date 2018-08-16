@@ -14,7 +14,7 @@ public interface RoomService {
 
     public RoomUpdateResponse update(RoomUpdateRequest request);
 
-    public void delete(RoomDeleteRequest request);
+    public RoomDeleteResponse delete(RoomDeleteRequest request);
 
     public RoomSelectResponse select(RoomSelectRequest request);
 

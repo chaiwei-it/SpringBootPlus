@@ -1,5 +1,6 @@
 package com.mood.controller.room;
 
+import com.mood.annotation.LoginRequired;
 import com.mood.base.BaseController;
 import com.mood.entity.room.notes.*;
 import com.mood.entity.room.request.*;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 /**
@@ -32,7 +34,9 @@ public class RoomApi extends BaseController {
      */
     @ApiOperation(value = RoomInsertNote.title, notes = RoomInsertNote.notes)
     @PostMapping("add")
-    public RoomInsertResponse create(@Valid @RequestBody RoomInsertRequest request, BindingResult error){
+    public RoomInsertResponse create(@Valid @RequestBody RoomInsertRequest request, BindingResult error,
+                                     HttpServletRequest httpServletRequest){
+        String userId = getUserId(httpServletRequest);
         return roomService.insert(request);
     }
 
@@ -54,8 +58,8 @@ public class RoomApi extends BaseController {
      */
     @ApiOperation(value = RoomDeleteNote.title, notes = RoomDeleteNote.notes)
     @PostMapping("delete")
-    public void delete(@Valid @RequestBody RoomDeleteRequest request, BindingResult error){
-        roomService.delete(request);
+    public RoomDeleteResponse delete(@Valid @RequestBody RoomDeleteRequest request, BindingResult error){
+        return roomService.delete(request);
     }
 
     /**

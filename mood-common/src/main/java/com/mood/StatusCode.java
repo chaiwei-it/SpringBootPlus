@@ -91,6 +91,7 @@ public enum StatusCode implements RestStatus {
     USER_NEVER(100001, "该用户不存在"),
 
     PARENT_NEVER(110001, "该上级ID不存在"),
+
     ;
 
     private final int code;

@@ -16,14 +16,6 @@ import lombok.Data;
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"}, ignoreUnknown = true)
 public class RoomInsertResponse extends RestfulResponse {
 
-    @ApiModelProperty(value = "测试ID", example = "1", required = true)
-    private String id;
-
-    /**
-     * 名称
-     */
-    @ApiModelProperty(value = "测试名称", example = "1", required = true)
-    private String name;
 
 
 }

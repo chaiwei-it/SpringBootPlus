@@ -20,12 +20,6 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler", "fieldHandler"}, ignoreUnknown = true)
 public class RoomPagerRequest extends Pager {
 
-    /**
-     * 名称
-     */
-    @NotNull(message = "请输入昵称")
-    @NotBlank(message = "请输入昵称")
-    private String name;
 
 
 }
